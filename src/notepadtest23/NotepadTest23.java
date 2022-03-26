@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package notepadtest23;
 
 import javafx.application.Application;
@@ -30,7 +25,7 @@ public class NotepadTest23 extends Application {
             //controller
             FXMLController controller = loader.getController();
             controller.setStage(stage);
-            
+
             //scene
             Scene scene = new Scene(root);
             scene.getStylesheets().clear();
