@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tools;
 
 import java.io.File;
@@ -38,19 +33,9 @@ public class DialogManager {
         return file;
     }
 
-    public static List<File> openAllFile(Stage stage) {
-        List<File> file = fc.showOpenMultipleDialog(stage);
+    public static File createFile(Stage stage){
+        File file = fc.showSaveDialog(stage);
         return file;
     }
 
-    public static File[] openDir(Stage stage) {
-        File dir = dc.showDialog(stage);
-        File[] files = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".txt");
-            }
-        });
-        return files;
-    }
 }

@@ -1,20 +1,31 @@
-ordinary notpad in java
-using javafx framework
-1) сомнительный функционал под удаление(готово):
-OpenDir - работает. откривает все текстовие файл в текущей папке(и не заходит во внутришние папки)
-OpenAll - работает? почти тоже самое что и OpenDir
+ordinary notepad in java
+using: 
+-javafx-sdk-18
 
-2) ратотает/ почти работает:
-Open - почти работает. откривает ".txt/ .json" файли. бивают проблеми с кодировкой.
-Save - почти работает. сохраняет откритый файл, не сохраняет новый.
+to do:
+* change framework from javafx to swing.
+* Open (function) - must know file encoding.
+* Encoding (function) - must change encoding.
+* Tab (behavior) - mark edited file.
+* CloseAll (function) - closes all tabs.
+* Tab (behavior) - if all tabs are closed, create new tab.
+* Tab (behavior) - number the tabs. if tab is closed, new tab can take its name.
+* Tab (function) - can work incorrectly if opened "New Tab" file(without extension).
+* MenuBar (behavior) - must highlight active Menu.
+* Menu (behavior) - mouse hover highlight MenuItem.
+* Window (behavior) - add stretch.
+* HotKey (behavior) - intercept meta key. rewrite (ctr + LeftArrow/RightArrow) to meta+.
 
-3) доделать:
-CloseAll - нету. закривает все вкладки и оставляет новую пустую.
-Close - нету. закривает активную вкладку
-Save As - 
-New - просто отркрить новую вкладку. нужный код уже написан, осталось просто приклеять его к кнопке
-* добавить счетчик новых вкладок
-** новая вкладка может взять имя уже закритой новой вкладки
-* добавить закрытие
-** вкладок на крестик
-** закритие активной вкладки на ctr+w/ кнопкой в меню(Close)
+in progress:
+
+
+ready:
+* Window (behavior) - can Minimize, Maximize, and Close.
+* Open (function) - opens file (only in one encoding UTF-8). has hotkey(ctr + O)
+* Save (function) - saves file (only in one encoding UTF-8). has hotkey(ctr + S).
+* Save (function) - saves file in .txt/ .json/ .html extension.
+* SaveAss (function) - save file as user choice.
+* Tab (function) - can be opened and closed. has hotkey(ctr + N).
+* Tab (behavior) - marks active tab.
+* Tab (behavior) - if current tab is empty, opened file is opened in this tab. Otherwise new tab is created.
+* Close (function) - close active tab. has hotkey(ctr + W).

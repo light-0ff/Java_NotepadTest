@@ -1,9 +1,4 @@
-package notepadtest23;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+package notepad;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,7 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import structures.TextTab;
 import tools.DialogManager;
-import static tools.DialogManager.fc;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -41,17 +39,17 @@ public class FXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TextTab tab = new TextTab();
-        tabpane.getTabs().add(tab);
-        tabpane.getTabs().forEach(t -> {
-            tabpane.getSelectionModel().select(tab);
+        tabpane.getSelectionModel().selectedItemProperty().addListener((observableValue, tabOld, tabNew) -> {
+            if (tabOld != null) tabOld.getStyleClass().remove("selected");
+            if (tabNew != null) tabNew.getStyleClass().add("selected");
         });
+        tabpane.getTabs().add(tab);
+        tabpane.getTabs().forEach(t -> tabpane.getSelectionModel().select(tab));
+
     }
 
     @FXML
@@ -76,13 +74,10 @@ public class FXMLController implements Initializable {
     @FXML
     private void pressed(MouseEvent ev) {
         mn.pressed(ev.getScreenX(), ev.getScreenY());
-//        if (ev.getClickCount()==2) {
-//            System.out.println("");
-//        }
     }
 
     @FXML
-    private void draged(MouseEvent ev) {
+    private void dragged(MouseEvent ev) {
         mn.move(ev.getScreenX(), ev.getScreenY());
 
     }
@@ -105,52 +100,77 @@ public class FXMLController implements Initializable {
         } else if (event.getCode() == KeyCode.RIGHT && event.isControlDown()) {
             System.out.println("right side");
             mn.putToRight();
-//            mn.setOldVals(); // вернуть прошлий размер
-        } else if (event.getCode() == KeyCode.S && event.isControlDown()) {
-            ((TextTab) tabpane.getSelectionModel().getSelectedItem()).saveFile();
-        } else if (event.getCode() == KeyCode.N && event.isControlDown()) {
-            tabpane.getTabs().add(new TextTab());
-            tabpane.getSelectionModel().select(tabpane.getTabs().toArray().length-1);
+        }
+        /////////////////////////////////////////////////////////////////////////////
+        if (event.isControlDown()) {
+            switch (event.getCode()) {
+                case N -> newTab();
+                case S -> save();
+                case W -> tabpane.getTabs().remove(tabpane.getSelectionModel().getSelectedItem());
+                case O -> openFile();
+            }
+
         }
 
-}
+    }
 
     @FXML
     private void fileMenuHnd(Event ev
     ) {
+        File file;
         switch (((MenuItem) ev.getSource()).getId()) {
             case "mCloseAll":
                 break;
             case "mClose":
+                tabpane.getTabs().remove(tabpane.getSelectionModel().getSelectedItem());
                 break;
             case "mOpen":
-                File file = DialogManager.openFile(stage);
-                if (file != null) {
-                    // check if current tab is empty
-                    //if not, create new tab
-
-                    TextTab buffer = (TextTab) tabpane.getSelectionModel().getSelectedItem();
-                    if (buffer.getText().equals("New Tab")) {
-                        // если сейчас активна пустая новая вкладка, то заменить ее открытым файлом
-                        if (buffer.getArea().getText().equals("")) {
-                            ((TextTab) tabpane.getSelectionModel().getSelectedItem()).replace(file);
-                            break;
-                        }
-                    }
-                    TextTab tab = new TextTab(file);
-                    tabpane.getTabs().add(tab);
-                    tabpane.getSelectionModel().select(tabpane.getTabs().toArray().length-1);
-                }
+                openFile();
                 break;
             case "mNew":
-                 tabpane.getTabs().add(new TextTab());
+                newTab();
                 break;
             case "mSaveAs":
-                break;
+                file = DialogManager.createFile(stage);
+                ((TextTab) tabpane.getSelectionModel().getSelectedItem()).replace(file, false);
+                //break;
+                //don't stop. just save
             case "mSave":
-                ((TextTab) tabpane.getSelectionModel().getSelectedItem()).saveFile();
+                save();
                 break;
         }
+    }
+
+    public void newTab() {
+        TextTab tab = new TextTab();
+        tabpane.getTabs().add(tab);
+        tabpane.getSelectionModel().select(tabpane.getTabs().toArray().length - 1);
+    }
+
+    public void openFile() {
+        File file = DialogManager.openFile(stage);
+        if (file != null) {
+            // check if current tab is empty
+            //if not, create new tab
+            TextTab buffer = (TextTab) tabpane.getSelectionModel().getSelectedItem();
+            if (buffer.getText().equals("New Tab")) {
+                if (buffer.getArea().getText().equals("")) {
+                    ((TextTab) tabpane.getSelectionModel().getSelectedItem()).replace(file, true);
+                    return;
+                }
+            }
+            TextTab tab = new TextTab(file);
+            tabpane.getTabs().add(tab);
+            tabpane.getSelectionModel().select(tabpane.getTabs().toArray().length - 1);
+        }
+    }
+
+    public void save() {
+        if (tabpane.getSelectionModel().getSelectedItem().getText().equals("New Tab")) {
+            File file = DialogManager.createFile(stage);
+            ((TextTab) tabpane.getSelectionModel().getSelectedItem()).replace(file, false);
+        }
+        ((TextTab) tabpane.getSelectionModel().getSelectedItem()).saveFile();
     }
 
 }
