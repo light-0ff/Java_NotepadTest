@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tools;
 
 import java.io.BufferedReader;
@@ -47,4 +42,24 @@ public class FileManager {
             ex.printStackTrace(System.err);
         }
     }
+     private void checkEncoding(File myFile){
+//         FileInputStream fIn  = new FileInputStream(myFile);
+//         byte[] buf = new byte[4096];
+//         UniversalDetector detector = new UniversalDetector(null);
+//         int nread;
+//         while ((nread = fIn.read(buf)) > 0 && !detector.isDone()) {
+//             detector.handleData(buf, 0, nread);
+//         }
+//         detector.dataEnd();
+//         String encoding = detector.getDetectedCharset();
+//         String chartsetName = null;
+//         if (encoding.equalsIgnoreCase("WINDOWS-1252")){
+//             chartsetName = "ISO-8859-1";
+//         }
+//         if (encoding.equalsIgnoreCase("UTF-8")){
+//             chartsetName = "UTF-8";
+//         }
+//
+//         BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn, chartsetName));
+     }
 }

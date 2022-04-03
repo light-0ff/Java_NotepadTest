@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package notepadtest23;
 
 import java.awt.GraphicsEnvironment;
@@ -26,7 +21,7 @@ public class AppManager {
     private double sw;
     private double sh;
     private boolean max;
-    //Mous    
+    //Mous
     private double mx;
     private double my;
     //Screan

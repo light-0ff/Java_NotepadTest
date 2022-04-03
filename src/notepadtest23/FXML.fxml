@@ -10,40 +10,38 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="AnchorPane" onKeyPressed="#btnHandler" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notepadtest23.FXMLController">
-     <stylesheets>
+<VBox id="AnchorPane" onKeyPressed="#btnHandler" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notepadtest23.FXMLController">
+    <stylesheets>
         <URL value="@fxml.css" />
     </stylesheets>
-   <children>
-      <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="200.0">
-         <children>
-            <MenuBar maxHeight="1.7976931348623157E308">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                        <MenuItem fx:id="mCloseAll" mnemonicParsing="false" onAction="#fileMenuHnd" text="Close All" />
-                    <MenuItem fx:id="mClose" mnemonicParsing="false" onAction="#fileMenuHnd" text="Close" />
-                        <MenuItem fx:id="mOpenDir" mnemonicParsing="false" onAction="#fileMenuHnd" text="Open Dir" />
-                        <MenuItem fx:id="mOpenAll" mnemonicParsing="false" onAction="#fileMenuHnd" text="Open All" />
-                        <MenuItem fx:id="mOpen" mnemonicParsing="false" onAction="#fileMenuHnd" text="Open" />
-                        <MenuItem fx:id="mNew" mnemonicParsing="false" onAction="#fileMenuHnd" text="New" />
-                        <MenuItem fx:id="mSaveAs" mnemonicParsing="false" onAction="#fileMenuHnd" text="Save As" />
-                        <MenuItem fx:id="mSave" mnemonicParsing="false" onAction="#fileMenuHnd" text="Save" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <Pane maxHeight="1.7976931348623157E308" onMouseClicked="#doubleClick" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimized" prefWidth="45.0" text="─" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#maximized" prefWidth="45.0" text=" ⃞" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefWidth="45.0" text="✕" />
-         </children>
-      </HBox>
-      <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-   </children>
+    <children>
+        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="hboxTop">
+            <children>
+                <MenuBar maxHeight="1.7976931348623157E308">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem fx:id="mCloseAll" mnemonicParsing="false" onAction="#fileMenuHnd" text="Close All" />
+                                <MenuItem fx:id="mClose" mnemonicParsing="false" onAction="#fileMenuHnd" text="Close" />
+                                <MenuItem fx:id="mOpen" mnemonicParsing="false" onAction="#fileMenuHnd" text="Open" />
+                                <MenuItem fx:id="mNew" mnemonicParsing="false" onAction="#fileMenuHnd" text="New" />
+                                <MenuItem fx:id="mSaveAs" mnemonicParsing="false" onAction="#fileMenuHnd" text="Save As" />
+                                <MenuItem fx:id="mSave" mnemonicParsing="false" onAction="#fileMenuHnd" text="Save" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Encoding">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="UTF-8" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <Pane maxHeight="1.7976931348623157E308" onMouseClicked="#doubleClick" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimized" prefWidth="45.0" text="─" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#maximized" prefWidth="45.0" text=" ⃞" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefWidth="45.0" text="✕" />
+            </children>
+        </HBox>
+        <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+    </children>
 </VBox>
