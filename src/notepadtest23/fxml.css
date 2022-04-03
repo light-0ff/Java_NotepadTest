@@ -63,9 +63,9 @@
 
 }
 
-.showing{
+.showing, .showing > .label{
     -fx-background-color: rgb(62, 91, 150);
 }
 .menu .menu-item:hover, .menu .menu-item:hover *{
-    -fx-background-color: rgb(255, 0, 0);
+    -fx-background-color: rgb(62, 91, 150);
 }
